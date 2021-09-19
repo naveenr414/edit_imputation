@@ -215,6 +215,13 @@ pre code {
 
 
 <!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShoYXNoKVxuYGBgIn0= -->
+<pre class="r"><code>library(hash)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 <p>This is an <a href="http://rmarkdown.rstudio.com">R Markdown</a> Notebook. When you execute code within the notebook, the results appear beneath the code.</p>
 <p>Try executing this chunk by clicking the <em>Run</em> button within the chunk or by placing your cursor inside it and pressing <em>Ctrl+Shift+Enter</em>.</p>
 <!-- rnb-text-end -->
@@ -238,21 +245,188 @@ pre code {
 <p>When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the <em>Preview</em> button or press <em>Ctrl+Shift+K</em> to preview the HTML file).</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYWdlX3ZhbHVlcyA8LSBjKFwiMC01XCIsXCI2LTEyXCIsXCIxMy0xOFwiLFwiMTgtNDVcIixcIjQ1LTYwXCIsXCI2MCtcIilcbmFnZV9pbmRleCA8LSBzYW1wbGUoc2VxKDEsbGVuZ3RoKGFnZV92YWx1ZXMpKSwgc2l6ZSA9IDEsIHJlcGxhY2UgPSBUUlVFLCBwcm9iID0gcmVwKGMoMS9sZW5ndGgoYWdlX3ZhbHVlcykpLGxlbmd0aChhZ2VfdmFsdWVzKSkpXG5hZ2UgPC0gYWdlX3ZhbHVlc1thZ2VfaW5kZXhdXG5hZ2VcbmBgYCJ9 -->
-<pre class="r"><code>age_values &lt;- c(&quot;0-5&quot;,&quot;6-12&quot;,&quot;13-18&quot;,&quot;18-45&quot;,&quot;45-60&quot;,&quot;60+&quot;)
-age_index &lt;- sample(seq(1,length(age_values)), size = 1, replace = TRUE, prob = rep(c(1/length(age_values)),length(age_values)))
-age &lt;- age_values[age_index]
-age</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2FtcGxlX3ZhbHVlcyA8LSBmdW5jdGlvbih2YWx1ZV9saXN0LHApIHtcbiAgdmFsdWVfbGVuZ3RoIDwtIGxlbmd0aCh2YWx1ZV9saXN0KVxuICBpZihsZW5ndGgocCkgPT0gMCkge1xuICAgICAgcHJvYnMgPC0gcmVwKGMoMS92YWx1ZV9sZW5ndGgpLHZhbHVlX2xlbmd0aClcbiAgfVxuICBlbHNlIHtcbiAgICBwcm9icyA8LSBwXG4gIH1cbiAgaW5kZXggPC0gc2FtcGxlKHNlcSgxLHZhbHVlX2xlbmd0aCksc2l6ZT0xLHJlcGxhY2U9VFJVRSxwcm9iPXByb2JzKSBcbiAgXG4gIHJldHVybiAodmFsdWVfbGlzdFtpbmRleF0pXG59XG5cbnJhbmRvbV9wZXJzb24gPC0gZnVuY3Rpb24oKSB7XG4gIGFnZV92YWx1ZXMgPC0gYyhcIjAtNVwiLFwiNi0xMlwiLFwiMTMtMThcIixcIjE4LTQ1XCIsXCI0NS02MFwiLFwiNjArXCIpXG4gIHNleF92YWx1ZXMgPC0gYyhcIk1hbGVcIiwgXCJGZW1hbGVcIiwgXCJPdGhlclwiKVxuICBtYXJpdGFsX3ZhbHVlcyA8LSBjKFwiU2luZ2xlXCIsIFwiTWFycmllZFwiLCBcIkRpdm9yY2VkXCIsIFwiU2VwZXJhdGVkXCIsIFwiV2lkb3dlZFwiKVxuICByZWxhdGlvbnNoaXBfdmFsdWVzIDwtIGMoXCJTZWxmXCIsIFwiU3BvdXNlXCIsXCJDaGlsZFwiLFwiUGFyZW50XCIsXCJPdGhlclwiKVxuICBlZHVjYXRpb25fdmFsdWVzIDwtIGMoXCJOb25lXCIgLFwiRWxlbWVudGFyeVwiLCBcIlNlY29kYXJ5XCIsIFwiUG9zdC1TZWNvbmRhcnlcIikgIFxuICBcbiAgaCA8LSBoYXNoKCkgXG4gIGhbW1wiYWdlXCJdXSA9IHNhbXBsZV92YWx1ZXMoYWdlX3ZhbHVlcyxjKCkpXG4gIGhbW1wic2V4XCJdXSA9IHNhbXBsZV92YWx1ZXMoc2V4X3ZhbHVlcyxjKDAuNDUsMC40NSwwLjEpKVxuICBoW1tcIm1hcml0YWxcIl1dID0gc2FtcGxlX3ZhbHVlcyhtYXJpdGFsX3ZhbHVlcyxjKCkpXG4gIGhbW1wicmVsYXRpb25zaGlwXCJdXSA9IHNhbXBsZV92YWx1ZXMocmVsYXRpb25zaGlwX3ZhbHVlcyxjKCkpXG4gIGhbW1wiZWR1Y2F0aW9uXCJdXSA9IHNhbXBsZV92YWx1ZXMoZWR1Y2F0aW9uX3ZhbHVlcyxjKCkpXG4gICAgcmV0dXJuIChoKVxufVxuXG5cbmBgYCJ9 -->
+<pre class="r"><code>sample_values &lt;- function(value_list,p) {
+  value_length &lt;- length(value_list)
+  if(length(p) == 0) {
+      probs &lt;- rep(c(1/value_length),value_length)
+  }
+  else {
+    probs &lt;- p
+  }
+  index &lt;- sample(seq(1,value_length),size=1,replace=TRUE,prob=probs) 
+  
+  return (value_list[index])
+}
+
+random_person &lt;- function() {
+  age_values &lt;- c(&quot;0-5&quot;,&quot;6-12&quot;,&quot;13-18&quot;,&quot;18-45&quot;,&quot;45-60&quot;,&quot;60+&quot;)
+  sex_values &lt;- c(&quot;Male&quot;, &quot;Female&quot;, &quot;Other&quot;)
+  marital_values &lt;- c(&quot;Single&quot;, &quot;Married&quot;, &quot;Divorced&quot;, &quot;Seperated&quot;, &quot;Widowed&quot;)
+  relationship_values &lt;- c(&quot;Self&quot;, &quot;Spouse&quot;,&quot;Child&quot;,&quot;Parent&quot;,&quot;Other&quot;)
+  education_values &lt;- c(&quot;None&quot; ,&quot;Elementary&quot;, &quot;Secodary&quot;, &quot;Post-Secondary&quot;)  
+  
+  h &lt;- hash() 
+  h[[&quot;age&quot;]] = sample_values(age_values,c())
+  h[[&quot;sex&quot;]] = sample_values(sex_values,c(0.45,0.45,0.1))
+  h[[&quot;marital&quot;]] = sample_values(marital_values,c())
+  h[[&quot;relationship&quot;]] = sample_values(relationship_values,c())
+  h[[&quot;education&quot;]] = sample_values(education_values,c())
+    return (h)
+}
+</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiMTgtNDVcIlxuIn0= -->
-<pre><code>[1] &quot;18-45&quot;</code></pre>
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2VuZXJhdGVfcmVjb3JkcyA8LSBmdW5jdGlvbihuKSB7XG4gIHBlb3BsZV9saXN0IDwtIGMoKVxuICBmb3IoaSBpbiAxOm4pIHtcbiAgICBwZW9wbGVfbGlzdCA8LSBhcHBlbmQocGVvcGxlX2xpc3QscmFuZG9tX3BlcnNvbigpKVxuICB9XG4gIHJldHVybiAocGVvcGxlX2xpc3QpXG59XG5cbmdlbmVyYXRlX3JlY29yZHMoMTApXG5gYGAifQ== -->
+<pre class="r"><code>generate_records &lt;- function(n) {
+  people_list &lt;- c()
+  for(i in 1:n) {
+    people_list &lt;- append(people_list,random_person())
+  }
+  return (people_list)
+}
+
+generate_records(10)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiW1sxXV1cbjxoYXNoPiBjb250YWluaW5nIDUga2V5LXZhbHVlIHBhaXIocykuXG4gIGFnZSA6IDQ1LTYwXG4gIGVkdWNhdGlvbiA6IE5vbmVcbiAgbWFyaXRhbCA6IFNpbmdsZVxuICByZWxhdGlvbnNoaXAgOiBTcG91c2VcbiAgc2V4IDogTWFsZVxuXG5bWzJdXVxuPGhhc2g+IGNvbnRhaW5pbmcgNSBrZXktdmFsdWUgcGFpcihzKS5cbiAgYWdlIDogMTgtNDVcbiAgZWR1Y2F0aW9uIDogU2Vjb2RhcnlcbiAgbWFyaXRhbCA6IFdpZG93ZWRcbiAgcmVsYXRpb25zaGlwIDogUGFyZW50XG4gIHNleCA6IEZlbWFsZVxuXG5bWzNdXVxuPGhhc2g+IGNvbnRhaW5pbmcgNSBrZXktdmFsdWUgcGFpcihzKS5cbiAgYWdlIDogNi0xMlxuICBlZHVjYXRpb24gOiBQb3N0LXNlY29uZGFyeVxuICBtYXJpdGFsIDogV2lkb3dlZFxuICByZWxhdGlvbnNoaXAgOiBTcG91c2VcbiAgc2V4IDogTWFsZVxuXG5bWzRdXVxuPGhhc2g+IGNvbnRhaW5pbmcgNSBrZXktdmFsdWUgcGFpcihzKS5cbiAgYWdlIDogNi0xMlxuICBlZHVjYXRpb24gOiBFbGVtZW50YXJ5XG4gIG1hcml0YWwgOiBEaXZvcmNlZFxuICByZWxhdGlvbnNoaXAgOiBTZWxmXG4gIHNleCA6IE90aGVyXG5cbltbNV1dXG48aGFzaD4gY29udGFpbmluZyA1IGtleS12YWx1ZSBwYWlyKHMpLlxuICBhZ2UgOiA0NS02MFxuICBlZHVjYXRpb24gOiBFbGVtZW50YXJ5XG4gIG1hcml0YWwgOiBTZXBlcmF0ZWRcbiAgcmVsYXRpb25zaGlwIDogU3BvdXNlXG4gIHNleCA6IE1hbGVcblxuW1s2XV1cbjxoYXNoPiBjb250YWluaW5nIDUga2V5LXZhbHVlIHBhaXIocykuXG4gIGFnZSA6IDAtNVxuICBlZHVjYXRpb24gOiBTZWNvZGFyeVxuICBtYXJpdGFsIDogTWFycmllZFxuICByZWxhdGlvbnNoaXAgOiBDaGlsZCxcbiAgc2V4IDogRmVtYWxlXG5cbltbN11dXG48aGFzaD4gY29udGFpbmluZyA1IGtleS12YWx1ZSBwYWlyKHMpLlxuICBhZ2UgOiA2MCtcbiAgZWR1Y2F0aW9uIDogUG9zdC1zZWNvbmRhcnlcbiAgbWFyaXRhbCA6IERpdm9yY2VkXG4gIHJlbGF0aW9uc2hpcCA6IE90aGVyXG4gIHNleCA6IE1hbGVcblxuW1s4XV1cbjxoYXNoPiBjb250YWluaW5nIDUga2V5LXZhbHVlIHBhaXIocykuXG4gIGFnZSA6IDAtNVxuICBlZHVjYXRpb24gOiBOb25lXG4gIG1hcml0YWwgOiBNYXJyaWVkXG4gIHJlbGF0aW9uc2hpcCA6IFBhcmVudFxuICBzZXggOiBNYWxlXG5cbltbOV1dXG48aGFzaD4gY29udGFpbmluZyA1IGtleS12YWx1ZSBwYWlyKHMpLlxuICBhZ2UgOiA2LTEyXG4gIGVkdWNhdGlvbiA6IFBvc3Qtc2Vjb25kYXJ5XG4gIG1hcml0YWwgOiBNYXJyaWVkXG4gIHJlbGF0aW9uc2hpcCA6IFNwb3VzZVxuICBzZXggOiBNYWxlXG5cbltbMTBdXVxuPGhhc2g+IGNvbnRhaW5pbmcgNSBrZXktdmFsdWUgcGFpcihzKS5cbiAgYWdlIDogMTMtMThcbiAgZWR1Y2F0aW9uIDogU2Vjb2RhcnlcbiAgbWFyaXRhbCA6IE1hcnJpZWRcbiAgcmVsYXRpb25zaGlwIDogT3RoZXJcbiAgc2V4IDogT3RoZXJcbiJ9 -->
+<pre><code>[[1]]
+&lt;hash&gt; containing 5 key-value pair(s).
+  age : 45-60
+  education : None
+  marital : Single
+  relationship : Spouse
+  sex : Male
+
+[[2]]
+&lt;hash&gt; containing 5 key-value pair(s).
+  age : 18-45
+  education : Secodary
+  marital : Widowed
+  relationship : Parent
+  sex : Female
+
+[[3]]
+&lt;hash&gt; containing 5 key-value pair(s).
+  age : 6-12
+  education : Post-secondary
+  marital : Widowed
+  relationship : Spouse
+  sex : Male
+
+[[4]]
+&lt;hash&gt; containing 5 key-value pair(s).
+  age : 6-12
+  education : Elementary
+  marital : Divorced
+  relationship : Self
+  sex : Other
+
+[[5]]
+&lt;hash&gt; containing 5 key-value pair(s).
+  age : 45-60
+  education : Elementary
+  marital : Seperated
+  relationship : Spouse
+  sex : Male
+
+[[6]]
+&lt;hash&gt; containing 5 key-value pair(s).
+  age : 0-5
+  education : Secodary
+  marital : Married
+  relationship : Child,
+  sex : Female
+
+[[7]]
+&lt;hash&gt; containing 5 key-value pair(s).
+  age : 60+
+  education : Post-secondary
+  marital : Divorced
+  relationship : Other
+  sex : Male
+
+[[8]]
+&lt;hash&gt; containing 5 key-value pair(s).
+  age : 0-5
+  education : None
+  marital : Married
+  relationship : Parent
+  sex : Male
+
+[[9]]
+&lt;hash&gt; containing 5 key-value pair(s).
+  age : 6-12
+  education : Post-secondary
+  marital : Married
+  relationship : Spouse
+  sex : Male
+
+[[10]]
+&lt;hash&gt; containing 5 key-value pair(s).
+  age : 13-18
+  education : Secodary
+  marital : Married
+  relationship : Other
+  sex : Other</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZWRpdHMgPC0gYyh7ZnVuY3Rpb24oeCkgeD4yMH0se2Z1bmN0aW9uKHgpIHg8MTV9KVxucGFzc2VzX2VkaXRzIDwtIGZ1bmN0aW9uKGVkaXRfbGlzdCxvKSB7XG4gcGFzc2VzID0gVFJVRVxuIGZvcihlZGl0IGluIGVkaXRfbGlzdCkge1xuICAgICBwYXNzZXMgPC0gcGFzc2VzICYgIWVkaXQobylcbiB9XG4gXG4gcmV0dXJuIChwYXNzZXMpIFxufVxuXG5wYXNzaW5nX3JlY29yZHMgPC0gZnVuY3Rpb24oZWRpdF9saXN0LCByZWNvcmRfbGlzdCkge1xuICBuZXdfcmVjb3JkcyA8LSBjKClcbiAgZm9yKGkgaW4gMTpsZW5ndGgocmVjb3JkX2xpc3QpKSB7XG4gICAgaWYocGFzc2VzX2VkaXRzKGVkaXRfbGlzdCxyZWNvcmRfbGlzdFtbaV1dKSkge1xuICAgICAgbmV3X3JlY29yZHMgPC0gYXBwZW5kKHJlY29yZF9saXN0W1tpXV0sbmV3X3JlY29yZHMpXG4gICAgfVxuICB9XG4gIHJldHVybiAobmV3X3JlY29yZHMpIFxufVxuXG5wYXNzaW5nX3JlY29yZHMoZWRpdHMsMToyMClcbmBgYCJ9 -->
+<pre class="r"><code>edits &lt;- c({function(x) x&gt;20},{function(x) x&lt;15})
+passes_edits &lt;- function(edit_list,o) {
+ passes = TRUE
+ for(edit in edit_list) {
+     passes &lt;- passes &amp; !edit(o)
+ }
+ 
+ return (passes) 
+}
+
+passing_records &lt;- function(edit_list, record_list) {
+  new_records &lt;- c()
+  for(i in 1:length(record_list)) {
+    if(passes_edits(edit_list,record_list[[i]])) {
+      new_records &lt;- append(record_list[[i]],new_records)
+    }
+  }
+  return (new_records) 
+}
+
+passing_records(edits,1:20)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDIwIDE5IDE4IDE3IDE2IDE1XG4ifQ== -->
+<pre><code>[1] 20 19 18 17 16 15</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZTEgPC0ge2Z1bmN0aW9uKHJlY29yZCkgKChyZWNvcmRbW1wiYWdlXCJdXSA9PSBcIjAtNVwiIHwgcmVjb3JkW1tcImFnZVwiXV0gPT0gXCI2LTEyXCIpICYgKHJlY29yZFtbXCJtYXJpdGFsXCJdXSAhPSBcIlNpbmdsZVwiKSl9XG5lMiA8LSB7ZnVuY3Rpb24ocmVjb3JkKSAoKHJlY29yZFtbXCJhZ2VcIl1dID09IFwiNjArXCIpICYgKHJlY29yZFtbXCJyZWxhdGlvbnNoaXBcIl1dID09IFwiQ2hpbGRcIikpfVxuZTMgPC0ge2Z1bmN0aW9uKHJlY29yZCkgKChyZWNvcmRbW1wicmVsYXRpb25zaGlwXCJdXSA9PSBcIlNwb3VzZVwiKSAmIChyZWNvcmRbW1wibWFyaXRhbFwiXV0gPT0gXCJTaW5nbGVcIikpfVxuZTQgPC0ge2Z1bmN0aW9uKHJlY29yZCkgKChyZWNvcmRbW1wiYWdlXCJdXSA9PSBcIjAtNVwiKSAmIChyZWNvcmRbW1wiZWR1Y2F0aW9uXCJdXSA9PSBcIlBvc3QtU2Vjb25kYXJ5XCIpKX1cbmU1IDwtIHtmdW5jdGlvbihyZWNvcmQpICgocmVjb3JkW1tcImFnZVwiXV0gPT0gXCIwLTVcIiB8IHJlY29yZFtbXCJhZ2VcIl1dID09IFwiNi0xMlwiIHwgcmVjb3JkW1tcImFnZVwiXV0gPT0gXCIxMy0xOFwiKSAmIChyZWNvcmRbW1wicmVsYXRpb25zaGlwXCJdXSA9PSBcIlNwb3VzZVwiKSl9XG5lNiA8LSB7ZnVuY3Rpb24ocmVjb3JkKSAoKHJlY29yZFtbXCJtYXJpdGFsXCJdXSA9PSBcIldpZG93ZWRcIikgJiAocmVjb3JkW1tcInJlbGF0aW9uc2hpcFwiXV0gPT0gXCJTcG91c2VcIikpfVxuZTcgPC0ge2Z1bmN0aW9uKHJlY29yZCkgKChyZWNvcmRbW1wiYWdlXCJdXSA9PSBcIjAtNVwiKSAmIChyZWNvcmRbW1wicmVsYXRpb25zaGlwXCJdXSA9PSBcIlNlbGZcIikpfVxuXG5cblxuZWRpdF9saXN0IDwtIGMoZTEsZTIsZTMsZTQsZTUsZTYsZTcpXG5yZWNvcmRzIDwtIGdlbmVyYXRlX3JlY29yZHMoNTAwMClcbmdvb2RfcmVjb3JkcyA8LSBwYXNzaW5nX3JlY29yZHMoZWRpdF9saXN0LHJlY29yZHMpXG5sZW5ndGgoZ29vZF9yZWNvcmRzKVxuYGBgIn0= -->
+<pre class="r"><code>e1 &lt;- {function(record) ((record[[&quot;age&quot;]] == &quot;0-5&quot; | record[[&quot;age&quot;]] == &quot;6-12&quot;) &amp; (record[[&quot;marital&quot;]] != &quot;Single&quot;))}
+e2 &lt;- {function(record) ((record[[&quot;age&quot;]] == &quot;60+&quot;) &amp; (record[[&quot;relationship&quot;]] == &quot;Child&quot;))}
+e3 &lt;- {function(record) ((record[[&quot;relationship&quot;]] == &quot;Spouse&quot;) &amp; (record[[&quot;marital&quot;]] == &quot;Single&quot;))}
+e4 &lt;- {function(record) ((record[[&quot;age&quot;]] == &quot;0-5&quot;) &amp; (record[[&quot;education&quot;]] == &quot;Post-Secondary&quot;))}
+e5 &lt;- {function(record) ((record[[&quot;age&quot;]] == &quot;0-5&quot; | record[[&quot;age&quot;]] == &quot;6-12&quot; | record[[&quot;age&quot;]] == &quot;13-18&quot;) &amp; (record[[&quot;relationship&quot;]] == &quot;Spouse&quot;))}
+e6 &lt;- {function(record) ((record[[&quot;marital&quot;]] == &quot;Widowed&quot;) &amp; (record[[&quot;relationship&quot;]] == &quot;Spouse&quot;))}
+e7 &lt;- {function(record) ((record[[&quot;age&quot;]] == &quot;0-5&quot;) &amp; (record[[&quot;relationship&quot;]] == &quot;Self&quot;))}
+
+
+
+edit_list &lt;- c(e1,e2,e3,e4,e5,e6,e7)
+records &lt;- generate_records(5000)
+good_records &lt;- passing_records(edit_list,records)
+length(good_records)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDMwNDdcbiJ9 -->
+<pre><code>[1] 3047</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike <em>Knit</em>, <em>Preview</em> does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.</p>
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpUaGlzIGlzIGFuIFtSIE1hcmtkb3duXShodHRwOi8vcm1hcmtkb3duLnJzdHVkaW8uY29tKSBOb3RlYm9vay4gV2hlbiB5b3UgZXhlY3V0ZSBjb2RlIHdpdGhpbiB0aGUgbm90ZWJvb2ssIHRoZSByZXN1bHRzIGFwcGVhciBiZW5lYXRoIHRoZSBjb2RlLiANCg0KVHJ5IGV4ZWN1dGluZyB0aGlzIGNodW5rIGJ5IGNsaWNraW5nIHRoZSAqUnVuKiBidXR0b24gd2l0aGluIHRoZSBjaHVuayBvciBieSBwbGFjaW5nIHlvdXIgY3Vyc29yIGluc2lkZSBpdCBhbmQgcHJlc3NpbmcgKkN0cmwrU2hpZnQrRW50ZXIqLiANCg0KYGBge3J9DQpwbG90KGNhcnMpDQpgYGANCg0KQWRkIGEgbmV3IGNodW5rIGJ5IGNsaWNraW5nIHRoZSAqSW5zZXJ0IENodW5rKiBidXR0b24gb24gdGhlIHRvb2xiYXIgb3IgYnkgcHJlc3NpbmcgKkN0cmwrQWx0K0kqLg0KDQpgYGB7cn0NCnggPC0gNQ0KYGBgDQoNCg0KV2hlbiB5b3Ugc2F2ZSB0aGUgbm90ZWJvb2ssIGFuIEhUTUwgZmlsZSBjb250YWluaW5nIHRoZSBjb2RlIGFuZCBvdXRwdXQgd2lsbCBiZSBzYXZlZCBhbG9uZ3NpZGUgaXQgKGNsaWNrIHRoZSAqUHJldmlldyogYnV0dG9uIG9yIHByZXNzICpDdHJsK1NoaWZ0K0sqIHRvIHByZXZpZXcgdGhlIEhUTUwgZmlsZSkuDQoNCmBgYHtyfQ0KYWdlX3ZhbHVlcyA8LSBjKCIwLTUiLCI2LTEyIiwiMTMtMTgiLCIxOC00NSIsIjQ1LTYwIiwiNjArIikNCmFnZV9pbmRleCA8LSBzYW1wbGUoc2VxKDEsbGVuZ3RoKGFnZV92YWx1ZXMpKSwgc2l6ZSA9IDEsIHJlcGxhY2UgPSBUUlVFLCBwcm9iID0gcmVwKGMoMS9sZW5ndGgoYWdlX3ZhbHVlcykpLGxlbmd0aChhZ2VfdmFsdWVzKSkpDQphZ2UgPC0gYWdlX3ZhbHVlc1thZ2VfaW5kZXhdDQphZ2UNCmBgYA0KDQoNClRoZSBwcmV2aWV3IHNob3dzIHlvdSBhIHJlbmRlcmVkIEhUTUwgY29weSBvZiB0aGUgY29udGVudHMgb2YgdGhlIGVkaXRvci4gQ29uc2VxdWVudGx5LCB1bmxpa2UgKktuaXQqLCAqUHJldmlldyogZG9lcyBub3QgcnVuIGFueSBSIGNvZGUgY2h1bmtzLiBJbnN0ZWFkLCB0aGUgb3V0cHV0IG9mIHRoZSBjaHVuayB3aGVuIGl0IHdhcyBsYXN0IHJ1biBpbiB0aGUgZWRpdG9yIGlzIGRpc3BsYXllZC4NCg==</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7cn0NCmxpYnJhcnkoaGFzaCkNCmBgYA0KDQoNClRoaXMgaXMgYW4gW1IgTWFya2Rvd25dKGh0dHA6Ly9ybWFya2Rvd24ucnN0dWRpby5jb20pIE5vdGVib29rLiBXaGVuIHlvdSBleGVjdXRlIGNvZGUgd2l0aGluIHRoZSBub3RlYm9vaywgdGhlIHJlc3VsdHMgYXBwZWFyIGJlbmVhdGggdGhlIGNvZGUuIA0KDQpUcnkgZXhlY3V0aW5nIHRoaXMgY2h1bmsgYnkgY2xpY2tpbmcgdGhlICpSdW4qIGJ1dHRvbiB3aXRoaW4gdGhlIGNodW5rIG9yIGJ5IHBsYWNpbmcgeW91ciBjdXJzb3IgaW5zaWRlIGl0IGFuZCBwcmVzc2luZyAqQ3RybCtTaGlmdCtFbnRlciouIA0KDQpgYGB7cn0NCnBsb3QoY2FycykNCmBgYA0KDQpBZGQgYSBuZXcgY2h1bmsgYnkgY2xpY2tpbmcgdGhlICpJbnNlcnQgQ2h1bmsqIGJ1dHRvbiBvbiB0aGUgdG9vbGJhciBvciBieSBwcmVzc2luZyAqQ3RybCtBbHQrSSouDQoNCmBgYHtyfQ0KeCA8LSA1DQpgYGANCg0KDQpXaGVuIHlvdSBzYXZlIHRoZSBub3RlYm9vaywgYW4gSFRNTCBmaWxlIGNvbnRhaW5pbmcgdGhlIGNvZGUgYW5kIG91dHB1dCB3aWxsIGJlIHNhdmVkIGFsb25nc2lkZSBpdCAoY2xpY2sgdGhlICpQcmV2aWV3KiBidXR0b24gb3IgcHJlc3MgKkN0cmwrU2hpZnQrSyogdG8gcHJldmlldyB0aGUgSFRNTCBmaWxlKS4NCg0KYGBge3J9DQpzYW1wbGVfdmFsdWVzIDwtIGZ1bmN0aW9uKHZhbHVlX2xpc3QscCkgew0KICB2YWx1ZV9sZW5ndGggPC0gbGVuZ3RoKHZhbHVlX2xpc3QpDQogIGlmKGxlbmd0aChwKSA9PSAwKSB7DQogICAgICBwcm9icyA8LSByZXAoYygxL3ZhbHVlX2xlbmd0aCksdmFsdWVfbGVuZ3RoKQ0KICB9DQogIGVsc2Ugew0KICAgIHByb2JzIDwtIHANCiAgfQ0KICBpbmRleCA8LSBzYW1wbGUoc2VxKDEsdmFsdWVfbGVuZ3RoKSxzaXplPTEscmVwbGFjZT1UUlVFLHByb2I9cHJvYnMpIA0KICANCiAgcmV0dXJuICh2YWx1ZV9saXN0W2luZGV4XSkNCn0NCg0KcmFuZG9tX3BlcnNvbiA8LSBmdW5jdGlvbigpIHsNCiAgYWdlX3ZhbHVlcyA8LSBjKCIwLTUiLCI2LTEyIiwiMTMtMTgiLCIxOC00NSIsIjQ1LTYwIiwiNjArIikNCiAgc2V4X3ZhbHVlcyA8LSBjKCJNYWxlIiwgIkZlbWFsZSIsICJPdGhlciIpDQogIG1hcml0YWxfdmFsdWVzIDwtIGMoIlNpbmdsZSIsICJNYXJyaWVkIiwgIkRpdm9yY2VkIiwgIlNlcGVyYXRlZCIsICJXaWRvd2VkIikNCiAgcmVsYXRpb25zaGlwX3ZhbHVlcyA8LSBjKCJTZWxmIiwgIlNwb3VzZSIsIkNoaWxkIiwiUGFyZW50IiwiT3RoZXIiKQ0KICBlZHVjYXRpb25fdmFsdWVzIDwtIGMoIk5vbmUiICwiRWxlbWVudGFyeSIsICJTZWNvZGFyeSIsICJQb3N0LVNlY29uZGFyeSIpICANCiAgDQogIGggPC0gaGFzaCgpIA0KICBoW1siYWdlIl1dID0gc2FtcGxlX3ZhbHVlcyhhZ2VfdmFsdWVzLGMoKSkNCiAgaFtbInNleCJdXSA9IHNhbXBsZV92YWx1ZXMoc2V4X3ZhbHVlcyxjKDAuNDUsMC40NSwwLjEpKQ0KICBoW1sibWFyaXRhbCJdXSA9IHNhbXBsZV92YWx1ZXMobWFyaXRhbF92YWx1ZXMsYygpKQ0KICBoW1sicmVsYXRpb25zaGlwIl1dID0gc2FtcGxlX3ZhbHVlcyhyZWxhdGlvbnNoaXBfdmFsdWVzLGMoKSkNCiAgaFtbImVkdWNhdGlvbiJdXSA9IHNhbXBsZV92YWx1ZXMoZWR1Y2F0aW9uX3ZhbHVlcyxjKCkpDQogICAgcmV0dXJuIChoKQ0KfQ0KDQoNCmBgYA0KDQpgYGB7cn0NCmdlbmVyYXRlX3JlY29yZHMgPC0gZnVuY3Rpb24obikgew0KICBwZW9wbGVfbGlzdCA8LSBjKCkNCiAgZm9yKGkgaW4gMTpuKSB7DQogICAgcGVvcGxlX2xpc3QgPC0gYXBwZW5kKHBlb3BsZV9saXN0LHJhbmRvbV9wZXJzb24oKSkNCiAgfQ0KICByZXR1cm4gKHBlb3BsZV9saXN0KQ0KfQ0KDQpnZW5lcmF0ZV9yZWNvcmRzKDEwKQ0KYGBgDQpgYGB7cn0NCmVkaXRzIDwtIGMoe2Z1bmN0aW9uKHgpIHg+MjB9LHtmdW5jdGlvbih4KSB4PDE1fSkNCnBhc3Nlc19lZGl0cyA8LSBmdW5jdGlvbihlZGl0X2xpc3Qsbykgew0KIHBhc3NlcyA9IFRSVUUNCiBmb3IoZWRpdCBpbiBlZGl0X2xpc3QpIHsNCiAgICAgcGFzc2VzIDwtIHBhc3NlcyAmICFlZGl0KG8pDQogfQ0KIA0KIHJldHVybiAocGFzc2VzKSANCn0NCg0KcGFzc2luZ19yZWNvcmRzIDwtIGZ1bmN0aW9uKGVkaXRfbGlzdCwgcmVjb3JkX2xpc3QpIHsNCiAgbmV3X3JlY29yZHMgPC0gYygpDQogIGZvcihpIGluIDE6bGVuZ3RoKHJlY29yZF9saXN0KSkgew0KICAgIGlmKHBhc3Nlc19lZGl0cyhlZGl0X2xpc3QscmVjb3JkX2xpc3RbW2ldXSkpIHsNCiAgICAgIG5ld19yZWNvcmRzIDwtIGFwcGVuZChyZWNvcmRfbGlzdFtbaV1dLG5ld19yZWNvcmRzKQ0KICAgIH0NCiAgfQ0KICByZXR1cm4gKG5ld19yZWNvcmRzKSANCn0NCg0KcGFzc2luZ19yZWNvcmRzKGVkaXRzLDE6MjApDQoNCg0KYGBgDQpgYGB7cn0NCmUxIDwtIHtmdW5jdGlvbihyZWNvcmQpICgocmVjb3JkW1siYWdlIl1dID09ICIwLTUiIHwgcmVjb3JkW1siYWdlIl1dID09ICI2LTEyIikgJiAocmVjb3JkW1sibWFyaXRhbCJdXSAhPSAiU2luZ2xlIikpfQ0KZTIgPC0ge2Z1bmN0aW9uKHJlY29yZCkgKChyZWNvcmRbWyJhZ2UiXV0gPT0gIjYwKyIpICYgKHJlY29yZFtbInJlbGF0aW9uc2hpcCJdXSA9PSAiQ2hpbGQiKSl9DQplMyA8LSB7ZnVuY3Rpb24ocmVjb3JkKSAoKHJlY29yZFtbInJlbGF0aW9uc2hpcCJdXSA9PSAiU3BvdXNlIikgJiAocmVjb3JkW1sibWFyaXRhbCJdXSA9PSAiU2luZ2xlIikpfQ0KZTQgPC0ge2Z1bmN0aW9uKHJlY29yZCkgKChyZWNvcmRbWyJhZ2UiXV0gPT0gIjAtNSIpICYgKHJlY29yZFtbImVkdWNhdGlvbiJdXSA9PSAiUG9zdC1TZWNvbmRhcnkiKSl9DQplNSA8LSB7ZnVuY3Rpb24ocmVjb3JkKSAoKHJlY29yZFtbImFnZSJdXSA9PSAiMC01IiB8IHJlY29yZFtbImFnZSJdXSA9PSAiNi0xMiIgfCByZWNvcmRbWyJhZ2UiXV0gPT0gIjEzLTE4IikgJiAocmVjb3JkW1sicmVsYXRpb25zaGlwIl1dID09ICJTcG91c2UiKSl9DQplNiA8LSB7ZnVuY3Rpb24ocmVjb3JkKSAoKHJlY29yZFtbIm1hcml0YWwiXV0gPT0gIldpZG93ZWQiKSAmIChyZWNvcmRbWyJyZWxhdGlvbnNoaXAiXV0gPT0gIlNwb3VzZSIpKX0NCmU3IDwtIHtmdW5jdGlvbihyZWNvcmQpICgocmVjb3JkW1siYWdlIl1dID09ICIwLTUiKSAmIChyZWNvcmRbWyJyZWxhdGlvbnNoaXAiXV0gPT0gIlNlbGYiKSl9DQoNCg0KDQplZGl0X2xpc3QgPC0gYyhlMSxlMixlMyxlNCxlNSxlNixlNykNCnJlY29yZHMgPC0gZ2VuZXJhdGVfcmVjb3Jkcyg1MDAwKQ0KZ29vZF9yZWNvcmRzIDwtIHBhc3NpbmdfcmVjb3JkcyhlZGl0X2xpc3QscmVjb3JkcykNCmxlbmd0aChnb29kX3JlY29yZHMpDQoNCmBgYA0KDQoNClRoZSBwcmV2aWV3IHNob3dzIHlvdSBhIHJlbmRlcmVkIEhUTUwgY29weSBvZiB0aGUgY29udGVudHMgb2YgdGhlIGVkaXRvci4gQ29uc2VxdWVudGx5LCB1bmxpa2UgKktuaXQqLCAqUHJldmlldyogZG9lcyBub3QgcnVuIGFueSBSIGNvZGUgY2h1bmtzLiBJbnN0ZWFkLCB0aGUgb3V0cHV0IG9mIHRoZSBjaHVuayB3aGVuIGl0IHdhcyBsYXN0IHJ1biBpbiB0aGUgZWRpdG9yIGlzIGRpc3BsYXllZC4NCg==</div>
 
 
 

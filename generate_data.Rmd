@@ -3,6 +3,11 @@ title: "R Notebook"
 output: html_notebook
 ---
 
+```{r}
+library(hash)
+```
+
+
 This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
 
 Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
@@ -13,6 +18,99 @@ plot(cars)
 
 Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
 
+```{r}
+x <- 5
+```
+
+
 When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+```{r}
+sample_values <- function(value_list,p) {
+  value_length <- length(value_list)
+  if(length(p) == 0) {
+      probs <- rep(c(1/value_length),value_length)
+  }
+  else {
+    probs <- p
+  }
+  index <- sample(seq(1,value_length),size=1,replace=TRUE,prob=probs) 
+  
+  return (value_list[index])
+}
+
+random_person <- function() {
+  age_values <- c("0-5","6-12","13-18","18-45","45-60","60+")
+  sex_values <- c("Male", "Female", "Other")
+  marital_values <- c("Single", "Married", "Divorced", "Seperated", "Widowed")
+  relationship_values <- c("Self", "Spouse","Child","Parent","Other")
+  education_values <- c("None" ,"Elementary", "Secodary", "Post-Secondary")  
+  
+  h <- hash() 
+  h[["age"]] = sample_values(age_values,c())
+  h[["sex"]] = sample_values(sex_values,c(0.45,0.45,0.1))
+  h[["marital"]] = sample_values(marital_values,c())
+  h[["relationship"]] = sample_values(relationship_values,c())
+  h[["education"]] = sample_values(education_values,c())
+    return (h)
+}
+
+
+```
+
+```{r}
+generate_records <- function(n) {
+  people_list <- c()
+  for(i in 1:n) {
+    people_list <- append(people_list,random_person())
+  }
+  return (people_list)
+}
+
+generate_records(10)
+```
+```{r}
+edits <- c({function(x) x>20},{function(x) x<15})
+passes_edits <- function(edit_list,o) {
+ passes = TRUE
+ for(edit in edit_list) {
+     passes <- passes & !edit(o)
+ }
+ 
+ return (passes) 
+}
+
+passing_records <- function(edit_list, record_list) {
+  new_records <- c()
+  for(i in 1:length(record_list)) {
+    if(passes_edits(edit_list,record_list[[i]])) {
+      new_records <- append(record_list[[i]],new_records)
+    }
+  }
+  return (new_records) 
+}
+
+passing_records(edits,1:20)
+
+
+```
+```{r}
+e1 <- {function(record) ((record[["age"]] == "0-5" | record[["age"]] == "6-12") & (record[["marital"]] != "Single"))}
+e2 <- {function(record) ((record[["age"]] == "60+") & (record[["relationship"]] == "Child"))}
+e3 <- {function(record) ((record[["relationship"]] == "Spouse") & (record[["marital"]] == "Single"))}
+e4 <- {function(record) ((record[["age"]] == "0-5") & (record[["education"]] == "Post-Secondary"))}
+e5 <- {function(record) ((record[["age"]] == "0-5" | record[["age"]] == "6-12" | record[["age"]] == "13-18") & (record[["relationship"]] == "Spouse"))}
+e6 <- {function(record) ((record[["marital"]] == "Widowed") & (record[["relationship"]] == "Spouse"))}
+e7 <- {function(record) ((record[["age"]] == "0-5") & (record[["relationship"]] == "Self"))}
+
+
+
+edit_list <- c(e1,e2,e3,e4,e5,e6,e7)
+records <- generate_records(5000)
+good_records <- passing_records(edit_list,records)
+length(good_records)
+
+```
+
 
 The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
