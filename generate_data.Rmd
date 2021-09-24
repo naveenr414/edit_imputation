@@ -39,13 +39,22 @@ sample_values <- function(value_list,p) {
   return (value_list[index])
 }
 
-random_person <- function() {
   age_values <- c("0-5","6-12","13-18","18-45","45-60","60+")
   sex_values <- c("Male", "Female", "Other")
   marital_values <- c("Single", "Married", "Divorced", "Seperated", "Widowed")
   relationship_values <- c("Self", "Spouse","Child","Parent","Other")
   education_values <- c("None" ,"Elementary", "Secodary", "Post-Secondary")  
+
+possible_values <- hash()
+possible_values[["age"]] <- age_values
+possible_values[["sex"]] <- sex_values 
+possible_values[["marital"]] <- marital_values 
+possible_values[["relationship"]] <- relationship_values
+possible_values[["education"]] <- education_values
   
+
+
+random_person <- function() {
   h <- hash() 
   h[["age"]] = sample_values(age_values,c())
   h[["sex"]] = sample_values(sex_values,c(0.45,0.45,0.1))
@@ -111,6 +120,52 @@ good_records <- passing_records(edit_list,records)
 length(good_records)
 
 ```
+Let's permute some of the records randomly 
+```{r}
+peturb_records <- function(old_records,values) {
+  good_records <- old_records
+  for(i in 1:length(good_records)) {
+    new_record <- copy(good_records[[i]])
+    for(k in keys(new_record)) {
+      if(runif(1)<0.2) {
+        possible_values <- values[[k]]
+        value <- sample_values(possible_values,c())
+        new_record[[k]] <- value
+      }
+    }
+    good_records[[i]] = new_record
+  }
+  
+  return (good_records)
+}
 
+modified_records <- peturb_records(good_records,possible_values)
+length(passing_records(edit_list,modified_records))
+```
+
+```{r}
+write_to_csv <- function(data_list,file_name) {
+  Age <- c()
+  Education <- c()
+  Marital <- c()
+  Relationship <- c()
+  Sex <- c()
+  
+  for(i in 1:length(data_list)) {
+    Age <- append(data_list[[i]][["age"]],Age)
+    Education <- append(data_list[[i]][["education"]],Education)
+    Marital <- append(data_list[[i]][["marital"]],Marital)
+    Relationship <- append(data_list[[i]][["relationship"]],Relationship)
+    Sex <- append(data_list[[i]][["sex"]],Sex)
+  }
+  df <- data.frame(Age,Education,Marital,Relationship,Sex)
+  write.csv(df,file_name)
+}
+
+write_to_csv(good_records,"good_records.csv")
+write_to_csv(modified_records,"error_records.csv")
+
+
+```
 
 The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
