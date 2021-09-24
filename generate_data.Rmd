@@ -7,23 +7,7 @@ output: html_notebook
 library(hash)
 ```
 
-
-This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
-
-Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
-
-```{r}
-plot(cars)
-```
-
-Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
-
-```{r}
-x <- 5
-```
-
-
-When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+Let's first create a method to sample elements from a list 
 
 ```{r}
 sample_values <- function(value_list,p) {
@@ -38,34 +22,35 @@ sample_values <- function(value_list,p) {
   
   return (value_list[index])
 }
-
-  age_values <- c("0-5","6-12","13-18","18-45","45-60","60+")
-  sex_values <- c("Male", "Female", "Other")
-  marital_values <- c("Single", "Married", "Divorced", "Seperated", "Widowed")
-  relationship_values <- c("Self", "Spouse","Child","Parent","Other")
-  education_values <- c("None" ,"Elementary", "Secodary", "Post-Secondary")  
+```
+Then create a function to create random records, by randomly sampling for each field
+```{r}
 
 possible_values <- hash()
-possible_values[["age"]] <- age_values
-possible_values[["sex"]] <- sex_values 
-possible_values[["marital"]] <- marital_values 
-possible_values[["relationship"]] <- relationship_values
-possible_values[["education"]] <- education_values
+possible_values[["age"]] <- c("0-5","6-12","13-18","18-45","45-60","60+")
+possible_values[["sex"]] <- c("Male", "Female", "Other") 
+possible_values[["marital"]] <- c("Single", "Married", "Divorced", "Seperated", "Widowed") 
+possible_values[["relationship"]] <- c("Self", "Spouse","Child","Parent","Other")
+possible_values[["education"]] <- c("None" ,"Elementary", "Secodary", "Post-Secondary")  
   
-
+possible_probabilities <- hash()
+possible_probabilities[["age"]] <- c()
+possible_probabilities[["sex"]] <- c(0.45,0.45,0.1)
+possible_probabilities[["marital"]] <- c() 
+possible_probabilities[["relationship"]] <- c()
+possible_probabilities[["education"]] <- c()
 
 random_person <- function() {
   h <- hash() 
-  h[["age"]] = sample_values(age_values,c())
-  h[["sex"]] = sample_values(sex_values,c(0.45,0.45,0.1))
-  h[["marital"]] = sample_values(marital_values,c())
-  h[["relationship"]] = sample_values(relationship_values,c())
-  h[["education"]] = sample_values(education_values,c())
-    return (h)
+  for(i in keys(possible_values)) {
+    h[[i]] = sample_values(possible_values[[i]],possible_probabilities[[i]])
+  }
+  
+  return (h)
 }
-
-
 ```
+
+Now let's create multiple records, to create a survey
 
 ```{r}
 generate_records <- function(n) {
@@ -78,6 +63,7 @@ generate_records <- function(n) {
 
 generate_records(10)
 ```
+Now that we have a survey, let's define edits as a boolean statement, where edits determine what is not allowed
 ```{r}
 edits <- c({function(x) x>20},{function(x) x<15})
 passes_edits <- function(edit_list,o) {
@@ -103,6 +89,7 @@ passing_records(edits,1:20)
 
 
 ```
+Let's create our actual edits for the survey
 ```{r}
 e1 <- {function(record) ((record[["age"]] == "0-5" | record[["age"]] == "6-12") & (record[["marital"]] != "Single"))}
 e2 <- {function(record) ((record[["age"]] == "60+") & (record[["relationship"]] == "Child"))}
@@ -111,16 +98,19 @@ e4 <- {function(record) ((record[["age"]] == "0-5") & (record[["education"]] == 
 e5 <- {function(record) ((record[["age"]] == "0-5" | record[["age"]] == "6-12" | record[["age"]] == "13-18") & (record[["relationship"]] == "Spouse"))}
 e6 <- {function(record) ((record[["marital"]] == "Widowed") & (record[["relationship"]] == "Spouse"))}
 e7 <- {function(record) ((record[["age"]] == "0-5") & (record[["relationship"]] == "Self"))}
-
-
+```
+Using these edits + survey data, let's create a gold dataset, of perfect data points. 
+We do this by creating 5K random data points and removing the bad ones, leading to 3K data points. 
+Later, we'll perturb the dataset so some records are incorrect, which will serve as the noisy dataset. 
+```{r}
 
 edit_list <- c(e1,e2,e3,e4,e5,e6,e7)
 records <- generate_records(5000)
 good_records <- passing_records(edit_list,records)
 length(good_records)
-
 ```
-Let's permute some of the records randomly 
+
+The perturb function changes some fields from records (independently)
 ```{r}
 peturb_records <- function(old_records,values) {
   good_records <- old_records
@@ -142,30 +132,37 @@ peturb_records <- function(old_records,values) {
 modified_records <- peturb_records(good_records,possible_values)
 length(passing_records(edit_list,modified_records))
 ```
-
+Let's now write our gold dataset and our noisy dataset to CSV files. 
 ```{r}
 write_to_csv <- function(data_list,file_name) {
-  Age <- c()
-  Education <- c()
-  Marital <- c()
-  Relationship <- c()
-  Sex <- c()
-  
+  ids <- c()
   for(i in 1:length(data_list)) {
-    Age <- append(data_list[[i]][["age"]],Age)
-    Education <- append(data_list[[i]][["education"]],Education)
-    Marital <- append(data_list[[i]][["marital"]],Marital)
-    Relationship <- append(data_list[[i]][["relationship"]],Relationship)
-    Sex <- append(data_list[[i]][["sex"]],Sex)
+    ids <- append(i,ids)
   }
-  df <- data.frame(Age,Education,Marital,Relationship,Sex)
+  
+  
+  df <- data.frame(ids)
+  all_as_list <- hash()
+
+  for(i in 1:length(data_list)) {
+    for(key in keys(data_list[[i]])) {
+      all_as_list[[key]] <- append(data_list[[i]][[key]],all_as_list[[key]])
+    }
+  }
+  
+  column_names <- c("ids")
+  
+  for(i in keys(all_as_list)) {
+    df <- cbind(df,all_as_list[[i]])
+    column_names <- append(i, column_names)
+  }
+  
+  colnames(df) <- column_names
+  
   write.csv(df,file_name)
 }
 
 write_to_csv(good_records,"good_records.csv")
 write_to_csv(modified_records,"error_records.csv")
 
-
 ```
-
-The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
