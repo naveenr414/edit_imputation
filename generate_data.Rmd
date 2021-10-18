@@ -105,19 +105,19 @@ Later, we'll perturb the dataset so some records are incorrect, which will serve
 ```{r}
 
 edit_list <- c(e1,e2,e3,e4,e5,e6,e7)
-records <- generate_records(5000)
+records <- generate_records(10000)
 good_records <- passing_records(edit_list,records)
 length(good_records)
 ```
 
 The perturb function changes some fields from records (independently)
 ```{r}
-peturb_records <- function(old_records,values) {
+peturb_records <- function(old_records,values,error_prob) {
   good_records <- old_records
   for(i in 1:length(good_records)) {
     new_record <- copy(good_records[[i]])
     for(k in keys(new_record)) {
-      if(runif(1)<0.2) {
+      if(runif(1)<error_prob) {
         possible_values <- values[[k]]
         value <- sample_values(possible_values,c())
         new_record[[k]] <- value
@@ -129,12 +129,12 @@ peturb_records <- function(old_records,values) {
   return (good_records)
 }
 
-modified_records <- peturb_records(good_records,possible_values)
+modified_records <- peturb_records(good_records,possible_values,0.8)
 length(passing_records(edit_list,modified_records))
 ```
 Let's now write our gold dataset and our noisy dataset to CSV files. 
 ```{r}
-write_to_csv <- function(data_list,file_name) {
+to_data_frame <- function(data_list) {
   ids <- c()
   for(i in 1:length(data_list)) {
     ids <- append(i,ids)
@@ -154,11 +154,15 @@ write_to_csv <- function(data_list,file_name) {
   
   for(i in keys(all_as_list)) {
     df <- cbind(df,all_as_list[[i]])
-    column_names <- append(i, column_names)
+    column_names <- c(column_names, i)
   }
   
   colnames(df) <- column_names
-  
+  return (df)
+}
+
+write_to_csv <- function(data_list,file_name) {
+  df <- to_data_frame(data_list)
   write.csv(df,file_name)
 }
 
@@ -166,3 +170,22 @@ write_to_csv(good_records,"good_records.csv")
 write_to_csv(modified_records,"error_records.csv")
 
 ```
+
+```{r}
+good_records_df <- to_data_frame(good_records)
+modified_records_df <- to_data_frame(modified_records)
+```
+
+```{r}
+library(validate)
+rules <- validator(!((age =="0-5" | age == "6-12") & (marital != "Single")),
+                   !(age == "60+" & relationship == "Child"),
+                   !(relationship == "Spouse" & marital == "Single"),
+                   !(age == "0-5" & education == "Post-Secondary"),
+                   !((age == "0-5" | age == "6-12" | age == "13-18") & relationship == "Spouse"),
+                   !(marital == "Widowed" & relationship == "Spouse"),
+                   !(age == "0-5" & relationship == "Self"))
+out <- confront(modified_records_df,rules)
+plot(out)
+`
+
