@@ -29,9 +29,9 @@ Then create a function to create random records, by randomly sampling for each f
 possible_values <- hash()
 possible_values[["age"]] <- c("0-5","6-12","13-18","18-45","45-60","60+")
 possible_values[["sex"]] <- c("Male", "Female", "Other") 
-possible_values[["marital"]] <- c("Single", "Married", "Divorced", "Seperated", "Widowed") 
+possible_values[["marital"]] <- c("Single", "Married", "Divorced", "Separated", "Widowed") 
 possible_values[["relationship"]] <- c("Self", "Spouse","Child","Parent","Other")
-possible_values[["education"]] <- c("None" ,"Elementary", "Secodary", "Post-Secondary")  
+possible_values[["education"]] <- c("None" ,"Elementary", "Secondary", "Post-Secondary")  
   
 possible_probabilities <- hash()
 possible_probabilities[["age"]] <- c()

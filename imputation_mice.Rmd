@@ -46,14 +46,14 @@ impute_data <- function(dat) {
         sex = as.factor(sex),
 
     )
-  init = mice(dat, maxit=5) 
+  init = mice(dat, meth="cart",maxit=5) 
   meth = init$method
   predM = init$predictorMatrix
-  meth[c("education")]="polyr"
-  meth[c("age")]="polyr"
-  meth[c("marital")]="polyr"
-  meth[c("relationship")]="polyr"
-  meth[c("sex")]="polyr"
+  meth[c("education")]="polyreg"
+  meth[c("age")]="polyreg"
+  meth[c("marital")]="polyreg"
+  meth[c("relationship")]="polyreg"
+  meth[c("sex")]="polyreg"
   imputed = mice(dat, method=meth, predictorMatrix=predM, m=5)
   imputed <- complete(imputed)
   

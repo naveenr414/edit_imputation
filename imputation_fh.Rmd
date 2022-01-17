@@ -1,0 +1,133 @@
+---
+  title: "R Notebook"
+output: html_notebook
+---
+  
+  Let's import the generated data
+```{r}
+error_records <- read.csv(file="error_records.csv")
+```
+Now find the errors
+```{r}
+library(errorlocate)
+library(validate)
+library(dplyr)
+library(mice)
+rules <- validator(!((age =="0-5" | age == "6-12") & (marital != "Single")),
+                   !(age == "60+" & relationship == "Child"),
+                   !(relationship == "Spouse" & marital == "Single"),
+                   !(age == "0-5" & education == "Post-Secondary"),
+                   !((age == "0-5" | age == "6-12" | age == "13-18") & relationship == "Spouse"),
+                   !(marital == "Widowed" & relationship == "Spouse"),
+                   !(age == "0-5" & relationship == "Self"))
+
+out <- confront(error_records,rules)
+plot(out)
+
+```
+Now replace errors with NA
+```{r}
+dat <- replace_errors(error_records,rules,value="NA")
+out <- confront(dat,rules)
+plot(out)
+```
+
+```{r}
+possible_values <- hash()
+possible_values[["age"]] <- c("0-5","6-12","13-18","18-45","45-60","60+")
+possible_values[["sex"]] <- c("Male", "Female", "Other") 
+possible_values[["marital"]] <- c("Single", "Married", "Divorced", "Seperated", "Widowed") 
+possible_values[["relationship"]] <- c("Self", "Spouse","Child","Parent","Other")
+possible_values[["education"]] <- c("None" ,"Elementary", "Secodary", "Post-Secondary")  
+
+impute_record <- function(record,edit_rules) {
+  error_fields = c()
+  new_record <- record
+  
+  for(i in 1:ncol(record)) {       
+    if(is.na(record[1,i])) {
+      error_fields <- append(error_fields,i)
+    }
+  }
+  
+  if(length(error_fields) == 0) {
+    return (new_record)
+  }
+  
+  for(i in 1:length(error_fields)) {
+    col_name <- colnames(dat)[error_fields[i]]
+    potential_values_column <- possible_values[[col_name]]
+    current_potential <- c()
+    
+    for(j in 1:length(potential_values_column)) {
+      # Does this rule only involve error_fields[i]? 
+      new_record[[col_name]] <- potential_values_column[[j]]
+      res <- all(values(confront(new_record,rules)))
+      if(is.na(res) || res == TRUE) {
+        current_potential <- append(current_potential,potential_values_column[[j]])
+      }
+    }
+    
+    value <- sample(potential_values_column,1)
+    
+    if(length(current_potential)>0) {
+        value <- sample(current_potential,1)
+    }
+    new_record[[colnames(dat)[error_fields[i]]]] <- value
+  }
+  
+  return (new_record)
+}
+new_data <- dat 
+for(i in 1:nrow(dat)) {
+  new_data[i,] <- impute_record(dat[i,],rules)
+}
+out <- confront(new_data,rules)
+plot(out)
+```
+
+Now impute the errors
+```{r}
+ 
+
+dat <- subset(dat,select=-c(ids))
+
+impute_data <- function(dat) {
+ dat <- dat %>%
+    mutate(
+        age = as.factor(age),
+        education = as.factor(education),
+        marital = as.factor(marital),
+        relationship = as.factor(relationship),
+        sex = as.factor(sex),
+
+    )
+  init = mice(dat, meth="cart",maxit=5) 
+  meth = init$method
+  predM = init$predictorMatrix
+  meth[c("education")]="polyreg"
+  meth[c("age")]="polyreg"
+  meth[c("marital")]="polyreg"
+  meth[c("relationship")]="polyreg"
+  meth[c("sex")]="polyreg"
+  imputed = mice(dat, method=meth, predictorMatrix=predM, m=5)
+  imputed <- complete(imputed)
+  
+  return (imputed)
+}
+
+imputed <- impute_data(dat)
+
+```
+
+What's the error rate for these new errors? 
+  ```{r}
+imputed_2 <- impute_data(replace_errors(imputed,rules,value="suggestion"))
+out <- confront(imputed_2,rules)
+plot(out)
+
+```
+```{r}
+violating(imputed_2,rules)
+```
+
