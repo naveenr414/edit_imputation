@@ -28,6 +28,8 @@ plot(out)
 Now replace errors with NA
 ```{r}
 dat <- replace_errors(error_records,rules,value="suggestion")
+out <- confront(dat,rules)
+plot(out)
 
 ```
 
